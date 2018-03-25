@@ -1,0 +1,127 @@
+<app-header></app-header>
+<div class="container">
+  <h1>Személyi adatok</h1>
+  <form name="add-person-form" [formGroup]="addPersonForm" novalidate (ngSubmit)="savePerson(addPersonForm.value, addPersonForm.valid)">
+    <fieldset>
+      <div class="basic field">
+        <input type="hidden" name="personId">
+        <mat-form-field name="name">
+          <input matInput placeholder="Név" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field name="gender">
+          <mat-select placeholder="Neme" formControlName="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+              {{ gender.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field name="birthName">
+          <input matInput placeholder="Születési név" formControlName="birthName">
+        </mat-form-field>
+        <mat-form-field name="birthPlace">
+          <input matInput placeholder="Születési hely" formControlName="birthPlace">
+        </mat-form-field>
+        <mat-form-field name="dateOfBirth">
+          <input matInput [matDatepicker]="dateOfBirthPicker" placeholder="Születési idő" formControlName="dateOfBirth">
+          <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
+          <mat-datepicker #dateOfBirthPicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field name="mothersName">
+          <input matInput placeholder="Anyja neve" formControlName="mothersName">
+        </mat-form-field>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="basic field">
+        <mat-form-field name="idNumber">
+          <input matInput placeholder="Személyi igazolvány száma" formControlName="idNumber">
+        </mat-form-field>
+        <mat-form-field name="socialSecurity">
+          <input matInput placeholder="TAJ" formControlName="socialSecurity">
+        </mat-form-field>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="basic field">
+        <mat-form-field name="permanentAddress">
+          <input matInput placeholder="Állandó lakcím" formControlName="permanentAddress">
+        </mat-form-field>
+        <mat-form-field name="permanentAddressSince">
+          <input matInput [matDatepicker]="permanentAddressSincePicker" placeholder="Mióta" formControlName="permanentAddressSince">
+          <mat-datepicker-toggle matSuffix [for]="permanentAddressSincePicker"></mat-datepicker-toggle>
+          <mat-datepicker #permanentAddressSincePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field name="temporaryAddress">
+          <input matInput placeholder="Ideiglenes lakcím" formControlName="temporaryAddress">
+        </mat-form-field>
+        <mat-form-field name="temporaryAddressSince">
+          <input matInput [matDatepicker]="temporaryAddressSincePicker" placeholder="Mióta"  formControlName="temporaryAddressSince">
+          <mat-datepicker-toggle matSuffix [for]="temporaryAddressSincePicker"></mat-datepicker-toggle>
+          <mat-datepicker #temporaryAddressSincePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field name="currentAddress">
+          <input matInput placeholder="Tartózkodási hely" formControlName="currentAddress">
+        </mat-form-field>
+        <mat-form-field name="currentAddressSince">
+          <input matInput [matDatepicker]="currentAddressSincePicker" placeholder="Mióta" formControlName="currentAddressSince">
+          <mat-datepicker-toggle matSuffix [for]="currentAddressSincePicker"></mat-datepicker-toggle>
+          <mat-datepicker #currentAddressSincePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="basic field">
+        <mat-checkbox name="is-under-protection" color="primary" #protection formControlName="isUnderProtection" [(ngModel)]="isUnderProtection">Védelem alatt áll</mat-checkbox>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="basic field">
+        <mat-form-field name="maritalStatuses">
+          <mat-select placeholder="Családi állapot" formControlName="maritalStatus">
+            <mat-option *ngFor="let status of maritalStatuses" [value]="status.value">
+              {{ status.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field name="roles">
+          <mat-select placeholder="Szerep" formControlName="roles">
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{ role.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field name="email" type="email">
+          <input matInput placeholder="E-mail cím" formControlName="email">
+        </mat-form-field>
+        <mat-form-field name="phoneNumber" type="tel">
+          <input matInput placeholder="Telefonszám" formControlName="phoneNumber">
+        </mat-form-field>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="memo field">
+        <mat-form-field class="comment text" name="memo">
+          <textarea matInput placeholder="MEMO" matTextareaAutosize formControlName="memo">
+          </textarea>
+        </mat-form-field>
+      </div>
+    </fieldset>
+    <fieldset class="delete">
+      <div class="delete field" name="delete" *ngIf="personId">
+        <button mat-raised-button type="button">Törlés</button>
+      </div>
+    </fieldset>
+    <fieldset class="submit">
+      <div class="submit field" name="submit">
+        <button mat-raised-button color="primary" type="submit" [disabled]="addPersonForm.invalid">Mentés</button>
+        <mat-error *ngIf="hasError === true">{{ submitMessage }}</mat-error>
+        <span *ngIf="hasError === false">{{ submitMessage }}</span>
+      </div>
+    </fieldset>
+    <fieldset class="reset">
+      <div class="reset field" name="reset" *ngIf="addPersonForm.dirty">
+        <button mat-raised-button type="reset" (click)="resetForm()">Mégsem</button>
+      </div>
+    </fieldset>
+  </form>
+</div>

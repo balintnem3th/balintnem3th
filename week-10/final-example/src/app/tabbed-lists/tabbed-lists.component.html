@@ -1,0 +1,17 @@
+<app-header></app-header>
+<main>
+  <mat-tab-group>
+    <mat-tab label="clients">
+      <ng-template mat-tab-label>
+        <span class="tab-label">Ügyfelek</span>
+      </ng-template>
+      <div class="tab-content"><app-client-list></app-client-list></div>
+    </mat-tab>
+    <mat-tab label="persons">
+      <ng-template mat-tab-label>
+        <span class="tab-label">Emberek</span>
+      </ng-template>
+      <div class="tab-content"><app-person-list></app-person-list></div>
+    </mat-tab>
+  </mat-tab-group>
+</main>

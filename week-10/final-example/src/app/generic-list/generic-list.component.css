@@ -1,0 +1,11 @@
+.list .mat-paginator-container {
+  justify-content: space-between;
+}
+
+.mat-cell {
+  overflow: visible;
+}
+
+.mat-header-cell{
+  overflow: visible;
+}

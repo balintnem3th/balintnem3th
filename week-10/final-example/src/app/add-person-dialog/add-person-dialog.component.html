@@ -1,0 +1,6 @@
+<mat-dialog-content>
+  <app-add-person-form 
+    (personAdded)="sendPerson2($event)" 
+    (resettingForm)="closeDialog()">
+  </app-add-person-form>
+</mat-dialog-content>

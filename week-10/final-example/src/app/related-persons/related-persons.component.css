@@ -1,0 +1,41 @@
+.mat-table {
+  background-color: #fafafa;
+  margin-bottom: 3rem;
+}
+
+.mat-row {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.mat-header-row,
+.mat-row {
+  padding: 0;
+}
+
+.mat-header-row,
+.mat-row:last-child {
+  border-bottom-color: black;
+}
+
+.mat-header-cell {
+  font-size: 1rem;
+  color: black;
+}
+
+.mat-header-cell:last-child {
+  text-align: right;
+}
+
+.mat-column-present {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.mat-column-name {
+  flex-grow: 5;
+}
+
+.mat-column-controls {
+  flex-grow: 4;
+}

@@ -1,0 +1,23 @@
+.login-card {
+  width: 200px;
+  margin: 150px auto 0 auto;
+}
+
+.login-card::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.login-card .mat-form-field {
+  display: block;
+}
+
+.login-card button[type="submit"] {
+  float: right;
+  margin-top: 1rem;
+}
+
+.mat-form-field .mat-icon:hover {
+  cursor: pointer;
+}

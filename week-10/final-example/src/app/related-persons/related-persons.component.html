@@ -1,0 +1,29 @@
+<mat-table #table [dataSource]="relatedPersons">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>CSALÁDTAGOK</mat-header-cell>
+    <mat-cell *matCellDef="let person">{{ person.name }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="controls">
+    <mat-header-cell *matHeaderCellDef>
+      <button mat-icon-button type="button" aria-label="btn-search" color="primary" (click)="openTable()">
+        <mat-icon>
+          <i class="material-icons">search</i>
+        </mat-icon>
+      </button>
+      <button mat-icon-button type="button" aria-label="btn-add-person" color="primary" (click)="openDialog()">
+        <mat-icon>
+          <i class="material-icons">add_circle</i>
+        </mat-icon>
+      </button>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let person">
+      <button mat-icon-button type="button" aria-label="btn-delete" color="primary" (click)="deletePerson(person)">
+        <mat-icon>
+          <i class="material-icons">delete</i>
+        </mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

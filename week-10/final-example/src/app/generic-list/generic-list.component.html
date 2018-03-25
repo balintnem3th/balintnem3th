@@ -1,0 +1,40 @@
+<div class="header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Keresés" id="filter">
+  </mat-form-field>
+</div>
+<div>
+  <div class="list mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container *ngFor="let col of columns;let i = index" [matColumnDef]="col.columnDef">
+        <mat-header-cell  *matHeaderCellDef    mat-sort-header>
+            <mat-checkbox *ngIf="i===0 && checkBox" (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+            {{ col.header }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row;">
+        <mat-checkbox *ngIf="i===0 && checkBox" 
+                      (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+            {{ col.cell(row) }}
+                  </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="selection.toggle(row)">
+      </mat-row>
+    </mat-table> 
+    <mat-paginator  class="paginator"
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="(pageSizeOptions)">
+    </mat-paginator>
+    <div  *ngIf="saveIt">
+    <button mat-raised-button color="primary" type="submit"  (click)="saveRow()">Mentés</button>
+    <mat-error > {{ submitMessage }} </mat-error>
+    </div>
+  </div>
+</div>

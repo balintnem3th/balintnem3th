@@ -1,0 +1,76 @@
+form[name="add-client"] {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.field {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  color: rgb(63, 63, 63);
+  padding: 1rem 0;
+}
+
+.mat-form-field {
+  flex-shrink: 1;
+  box-sizing: border-box;
+  width: 33%;
+}
+
+.mat-form-field:nth-child(3n+2):not(.text) {
+  padding: 0 1rem;
+}
+
+textarea.mat-input-element {
+  resize: none;
+}
+
+.mat-checkbox {
+  align-self: center;
+  padding: 1rem 0;
+  flex-shrink: 1;
+  color: #000;
+}
+
+.text {
+  width: 100%;
+}
+
+.submit {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.submit button {
+  margin-left: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+  .mat-form-field:not(.text) {
+    width: 50%;
+  }
+
+  .mat-form-field:nth-child(even):not(.text) {
+    padding: 0;
+  }
+
+  .mat-form-field:nth-child(odd):not(.text) {
+    padding: 0 1rem 0 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .mat-form-field:not(.text) {
+    width: 100%;
+  }
+
+  .mat-form-field:nth-child(odd):not(.text) {
+    padding: 0;
+  }
+}

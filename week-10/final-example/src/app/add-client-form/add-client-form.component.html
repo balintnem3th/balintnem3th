@@ -1,0 +1,102 @@
+<app-header></app-header>
+<div class="container">
+  <h1>Ügyfél adatok</h1>
+  <form name="add-client" [formGroup]="myForm" novalidate (ngSubmit)="saveClient(myForm.value, myForm.valid)">
+    <fieldset>
+      <div class="basic field">
+        <mat-form-field name="user">
+          <mat-select placeholder="Adatfelvevő" formControlName="username">
+            <mat-option *ngFor="let user of users" [value]="user.id">
+                  {{ user.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field name="application-date">
+          <input matInput placeholder="Jelentkézes ideje" [matDatepicker]="picker" [value]="date.value" formControlName="applicationDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field name="application-location">
+          <mat-select placeholder="Jelentkézes helye" formControlName="applicationLocation">
+            <mat-option *ngFor="let location of locations" [value]="location.place">
+                  {{ location.place }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </fieldset>
+    <fieldset>
+        <div class="client field">
+          <mat-form-field name="name">
+            <input type="text" matInput placeholder="Kliens neve" formControlName="name" required>
+          </mat-form-field>
+          <mat-form-field name="type">
+            <mat-select placeholder="Ellátás tipusa" formControlName="type">
+              <mat-option *ngFor="let provision of provisions" [value]="provision.type">
+                    {{ provision.type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field name="status">
+            <mat-select placeholder="Státusz" formControlName="status">
+              <mat-option *ngFor="let status of statuses" [value]="status.state">
+                    {{ status.state }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field name="application-reason">
+              <mat-select placeholder="Jelentkezés oka" multiple formControlName="applicationReason">
+                <mat-option *ngFor="let reason of reasons" [value]="reason">{{ reason }}</mat-option>
+              </mat-select>
+          </mat-form-field>
+          <mat-form-field name="origin">
+              <mat-select placeholder="Honnan érkezett" formControlName="origin">
+                <mat-option *ngFor="let location of origin" [value]="location.where">
+                      {{ location.where }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          <mat-form-field name="history">
+              <mat-select placeholder="Előzmény" formControlName="history">
+                <mat-option *ngFor="let previous of history" [value]="previous.prev">
+                      {{ previous.prev }}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <mat-form-field name="initiator">
+            <mat-select placeholder="Ellátást kezdeményező" formControlName="initiator">
+              <mat-option *ngFor="let initiator of initiators" [value]="initiator.who">
+                    {{ initiator.who }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field name="social-worker">
+            <input type="text" matInput placeholder="Szociális munkás" formControlName="socialWorker">
+          </mat-form-field>
+        </div>
+        </fieldset>
+        <fieldset>
+          <div class="extra field">
+          <mat-checkbox name="has-extra-info" color="primary" #extra formControlName="hasWrittenExtraInformation">Van írásos jelzés másik intézményből</mat-checkbox>
+          <mat-form-field class="info text" *ngIf="extra.checked" name="extra-info">
+            <textarea matInput placeholder="Írásos jelzés" matTextareaAutosize formControlName="writtenExtraInformation"></textarea>
+          </mat-form-field>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="memo field">
+            <mat-form-field class="comment text" name="memo">
+              <textarea matInput placeholder="MEMO" matTextareaAutosize formControlName="memo"></textarea>
+            </mat-form-field>
+          </div>
+        </fieldset>
+        <app-related-persons (personsChanged)="setPersons($event)"></app-related-persons>
+        <fieldset>
+          <div class="submit field" name="submit">
+            <mat-error *ngIf="hasError === true">{{ submitMessage }}</mat-error>
+            <span *ngIf="hasError === false">{{ submitMessage }}</span>
+            <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid">Mentés</button>
+          </div>
+        </fieldset>
+  </form>
+</div>

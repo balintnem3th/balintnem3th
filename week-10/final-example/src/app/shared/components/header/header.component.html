@@ -1,0 +1,19 @@
+<header class="mat-elevation-z6">
+  <h1>széra</h1>
+  <div *ngIf="isLoggedIn === true">
+    <p>{{ signedInUser }}</p>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>
+          <i class="material-icons">menu</i>
+        </mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>
+            <i class="material-icons">power_settings_new</i>
+        </mat-icon>
+        <span>Kijelentkezés</span>
+      </button>
+    </mat-menu>
+  </div>
+</header>
